@@ -8,6 +8,10 @@ $ npm run test:unit
 $ npm run test:unit -- --watch
 ```
 
+## mount vs shallowMount
+
+相同的api调用，但`shallowMount`是一个隔离的环境，不会渲染子组件。当待测试组件内有http调用、store操作等类似副作用时，慎用`mount`。
+
 ## eslint中定义@vue/prettier规则
 
 ```json
