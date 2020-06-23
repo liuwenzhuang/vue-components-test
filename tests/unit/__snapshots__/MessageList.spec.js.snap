@@ -4,11 +4,13 @@ exports[`MessageList.vue should has the expected html structure 1`] = `
 <ul>
   <li
     class="message"
+    style="margin-top: 10px;"
   >
     New Msg1
   </li>
   <li
     class="message"
+    style="margin-top: 10px;"
   >
     New Msg2
   </li>
