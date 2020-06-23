@@ -1,29 +1,24 @@
 # vue-components-test
 
-## Project setup
-```
-npm install
+使用`jest`和`@vue/test-utils`对vue components进行单元测试：
+
+```bash
+$ npm run test:unit
+# watch模式
+$ npm run test:unit -- --watch
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## eslint中定义@vue/prettier规则
 
-### Compiles and minifies for production
+```json
+"rules": {
+  "prettier/prettier": [
+    "warn",
+    {
+      "singleQuote": true,
+      "semi": false,
+      "trailingComma": "none"
+    }
+  ]
+}
 ```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

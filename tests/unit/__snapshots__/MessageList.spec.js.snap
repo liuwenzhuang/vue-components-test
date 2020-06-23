@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MessageList.vue should has the expected html structure 1`] = `
+<ul>
+  <li
+    class="message"
+  >
+    New Msg1
+  </li>
+  <li
+    class="message"
+  >
+    New Msg2
+  </li>
+</ul>
+`;
