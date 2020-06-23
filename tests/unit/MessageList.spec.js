@@ -1,4 +1,4 @@
-import { mount } from '@vue/test-utils'
+import { mount, Wrapper } from '@vue/test-utils'
 import MessageList from '@/components/MessageList.vue'
 import Message from '@/components/Message.vue'
 
@@ -42,5 +42,16 @@ describe('MessageList.vue', () => {
   })
   it('should has the expected html structure', () => {
     expect(cmp.element).toMatchSnapshot()
+  })
+  it('should called onMessageClick when @message-click happen', () => {
+    const stub = jest.fn()
+    cmp.setMethods({
+      onMessageClick: stub
+    })
+    cmp
+      .findAllComponents(Message)
+      .at(0)
+      .vm.$emit('message-click')
+    expect(stub).toBeCalled()
   })
 })
