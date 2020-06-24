@@ -2,9 +2,11 @@
   <div>
     <form @submit.prevent="onSubmit(inputValue)">
       <input type="text" v-model="inputValue" />
-      <button type="submit">Submit</button>
+      <slot name="button">
+        <button type="submit">Submit</button>
+      </slot>
     </form>
-    <div v-for="item in results" :key="item.title">{{ item.title }}</div>
+    <slot v-bind:results="results"></slot>
   </div>
 </template>
 

@@ -1,7 +1,13 @@
 <template>
   <div id="app">
     <MessageList :messages="messages" />
-    <Form />
+    <Form>
+      <template v-slot:default="formProps">
+        <div v-for="item in formProps.results" :key="item.id">
+          {{ item.title }}
+        </div>
+      </template>
+    </Form>
   </div>
 </template>
 
