@@ -64,4 +64,20 @@ describe('Message.vue', () => {
       expect(stub).toBeCalledWith('Msg1')
     })
   })
+
+  describe('computed properties', () => {
+    let cmp = mountCmp({ message: 'Msg1' })
+    beforeEach(() => {
+      cmp = mountCmp({ message: 'Msg1' })
+    })
+    it('reversedMessage should be 1gsM', () => {
+      expect(cmp.vm.reversedMessage).toBe('1gsM')
+    })
+    it('reversedMessage should affected by message', () => {
+      cmp.setProps({
+        message: 'Msg2'
+      })
+      expect(cmp.vm.reversedMessage).toBe('2gsM')
+    })
+  })
 })
