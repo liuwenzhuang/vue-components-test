@@ -7,5 +7,7 @@ exports[`App.vue should match html structure 1`] = `
   <messagelist-stub
     messages="New Msg1,New Msg2"
   />
+   
+  <form-stub />
 </div>
 `;

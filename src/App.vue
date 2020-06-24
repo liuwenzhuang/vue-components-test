@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <MessageList :messages="messages" />
+    <Form />
   </div>
 </template>
 
 <script>
 import MessageList from './components/MessageList.vue'
+import Form from './components/Form.vue'
 
 export default {
   name: 'App',
   components: {
-    MessageList
+    MessageList,
+    Form
   },
   data() {
     return {
