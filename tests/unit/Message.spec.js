@@ -80,4 +80,43 @@ describe('Message.vue', () => {
       expect(cmp.vm.reversedMessage).toBe('2gsM')
     })
   })
+
+  describe('watcher on nextMessage', () => {
+    let cmp = mountCmp()
+    let spy = jest.spyOn(console, 'debug')
+    beforeEach(() => {
+      spy = jest.spyOn(console, 'debug')
+    })
+    afterEach(() => {
+      spy.mockReset()
+    })
+    it('should called if values change', done => {
+      cmp = mountCmp()
+      cmp.setData({
+        nextMessage: 'Next Msg1'
+      })
+      // watcher的执行会推迟到下个更新点，故需在$nextTick中判断
+      cmp.vm.$nextTick(() => {
+        expect(cmp.vm.nextMessage).toBe('Next Msg1')
+        expect(spy).toBeCalledWith(expect.stringContaining('Next Msg1'))
+        done()
+      })
+    })
+    it('should not called if values not change', done => {
+      cmp = mount(Message, {
+        data() {
+          return {
+            nextMessage: 'Next Msg2'
+          }
+        }
+      })
+      cmp.setData({
+        nextMessage: 'Next Msg2'
+      })
+      cmp.vm.$nextTick(() => {
+        expect(spy).not.toBeCalled()
+        done()
+      })
+    })
+  })
 })

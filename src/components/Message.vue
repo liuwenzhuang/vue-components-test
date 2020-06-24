@@ -15,6 +15,18 @@ export default {
       validator: author => author.length > 1
     }
   },
+  data() {
+    return {
+      nextMessage: ''
+    }
+  },
+  watch: {
+    nextMessage(newV, oldV) {
+      if (newV !== oldV) {
+        console.debug(newV)
+      }
+    }
+  },
   methods: {
     onMessageClick() {
       this.$emit('message-click', this.message)
