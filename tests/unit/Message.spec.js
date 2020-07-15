@@ -1,5 +1,10 @@
 import { mount } from '@vue/test-utils'
 import Message from '@/components/Message.vue'
+import { logMessage } from '@/components/util'
+
+jest.mock('@/components/util', () => ({
+  logMessage: jest.fn()
+}))
 
 function mountCmp(propsData) {
   return mount(Message, {
@@ -8,6 +13,10 @@ function mountCmp(propsData) {
 }
 
 describe('Message.vue', () => {
+  beforeEach(() => {
+    jest.resetModules()
+    jest.clearAllMocks()
+  })
   describe('properties', () => {
     it('should has a message property and author property which default value is LWZ', () => {
       const cmp = mountCmp({ message: 'Msg' })
@@ -48,14 +57,9 @@ describe('Message.vue', () => {
       spy.mockReset()
     })
     it('call onMessageClick when click on message by setMethods', () => {
-      // TODO: setMethods will be deprecated
-      const stub = jest.fn()
-      cmp.setMethods({
-        onMessageClick: stub
-      })
       cmp.vm.$forceUpdate()
       cmp.find('.message').trigger('click')
-      expect(stub).toBeCalled()
+      expect(logMessage).toBeCalled()
     })
     it('onMessageClick will $emit message-click event', () => {
       const stub = jest.fn()

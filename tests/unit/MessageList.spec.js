@@ -1,11 +1,18 @@
-import { mount, Wrapper } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import MessageList from '@/components/MessageList.vue'
 import Message from '@/components/Message.vue'
+import { logMessage } from '@/components/util'
+
+jest.mock('@/components/util', () => ({
+  logMessage: jest.fn()
+}))
 
 describe('MessageList.vue', () => {
   let cmp
   const messages = ['New Msg1', 'New Msg2']
   beforeEach(() => {
+    jest.resetModules()
+    jest.clearAllMocks()
     cmp = mount(MessageList, {
       propsData: { messages }
     })
@@ -44,14 +51,10 @@ describe('MessageList.vue', () => {
     expect(cmp.element).toMatchSnapshot()
   })
   it('should called onMessageClick when @message-click happen', () => {
-    const stub = jest.fn()
-    cmp.setMethods({
-      onMessageClick: stub
-    })
     cmp
       .findAllComponents(Message)
       .at(0)
       .vm.$emit('message-click')
-    expect(stub).toBeCalled()
+    expect(logMessage).toBeCalled()
   })
 })

@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import { logMessage } from './util'
+
 export default {
   props: {
     message: String,
@@ -29,6 +31,7 @@ export default {
   },
   methods: {
     onMessageClick() {
+      logMessage('')
       this.$emit('message-click', this.message)
     }
   },

@@ -11,6 +11,7 @@
 
 <script>
 import Message from './Message.vue'
+import { logMessage } from './util'
 
 export default {
   props: ['messages'],
@@ -19,7 +20,8 @@ export default {
   },
   methods: {
     onMessageClick(message) {
-      console.log(message)
+      logMessage(message)
+      // rest of
     }
   }
 }
